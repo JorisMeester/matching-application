@@ -1,0 +1,27 @@
+{
+  "name": "matching-application",
+  "version": "1.0.0",
+  "description": "Matching application for school project",
+ 
+  "author": {
+    "name": "Joris Meester",
+    "email": "jorismeester98@gmail.com",
+    "url": "jorismeester.nl"
+  },
+  "repository": "JorisMeester/matching-application",
+  "homepage": "https://github.com/JorisMeester/matching-application",
+  "main": "index.js",
+  "bugs": {
+    "url": "https://github.com/JorisMeester/matching-application/issues"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Matching",
+    "Application",
+    "Dating",
+    "Filtering"
+  ],
+  "license": "MIT"
+}
