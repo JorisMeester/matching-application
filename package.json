@@ -2,11 +2,10 @@
   "name": "matching-application",
   "version": "1.0.0",
   "description": "Matching application for school project",
- 
   "author": {
     "name": "Joris Meester",
     "email": "jorismeester98@gmail.com",
-    "url": "jorismeester.nl"
+    "url": "https://jorismeester.nl/"
   },
   "repository": "JorisMeester/matching-application",
   "homepage": "https://github.com/JorisMeester/matching-application",
@@ -15,13 +14,20 @@
     "url": "https://github.com/JorisMeester/matching-application/issues"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "bonjourno"
   },
   "keywords": [
     "Matching",
     "Application",
     "Dating",
-    "Filtering"
+    "Filtering",
+    "People",
+    "Profiles",
+    "Search"
   ],
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "camelcase": "^6.2.0",
+    "lodash": "^4.17.20"
+  }
 }
