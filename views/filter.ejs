@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+</head>
+
+<body>
+    <header>
+        <h1>Filters</h1>
+    </header>
+    <main>
+        <form action="">
+            <div>
+                <p>Interested in</p>
+                <% for(i = 0; i < data.interests.length; i++){ %>
+                <div>
+                    <input type="radio" id="<%= data.interests[i].toLowerCase(); %>" name="interest" value="<%= data.interests[i].toLowerCase(); %>">
+                    <label for="<%= data.interests[i].toLowerCase(); %>"><%= data.interests[i] %></label>
+                </div>
+                <% } %>
+            </div>
+            <div>
+                <label for="min-age">Age</label>
+                <input type="number" id="min-age" name="min-age" min="18" class="inline">
+                <label for="max-age" class="inline">to</label>
+                <input type="number" id="max-age" name="max-age" max="130" class="inline">
+            </div>
+            <div>
+                <label for="religion-select">Religion</label>
+                <select name="religion" id="religion-select">
+                    <option value="">Select a religion</option>
+                    <% for(i = 0; i < data.religions.length; i++){ %>
+                    <option value="<%= data.religions[i].toLowerCase(); %>"><%= data.religions[i] %></option>
+                    <% } %>
+                </select>
+            </div>
+            <div>
+                <label for="living-distance">Living distance</label>
+                <input type="number" name="living-distance" id="living-distance">
+            </div>
+            <div>
+                <label for="place">Place</label>
+                <input type="search" name="place" id="place">
+            </div>
+            <div>
+                <label for="hobbies">Hobbies</label>
+                <input type="search" name="place" id="place">
+                <button id="add-hobby">+</button>
+            </div>
+            <input type="submit" value="Search">
+        </form>
+    </main>
+    <script src="../js/script.js"></script>
+</body>
+
+</html>
