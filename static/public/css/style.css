@@ -1,29 +1,83 @@
 /* styling file */
-body{
+
+* {
+    font-family: 'Josefin Sans', sans-serif;
+}
+
+body {
     margin: 0;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-}
-header, main{
-    margin: 20px;
+    font-size: 1.2em;
 }
 
+header > *, main > * {
+    margin-left: 20px;
+    margin-right: 20px;
+}
 
-input[type=text], form>div>label{
+header {
+    text-align: center;
+    align-items: center;
+    box-shadow: 0 5px 5px gray;
+}
+
+header h1 {
+    font-size: 1.5em;
+    padding-bottom: 0.5em;
+    margin: 0;
+}
+
+label, form p {
+    color: steelblue;
+}
+
+input[type=text], input[type=number], input[type=search], input[type=submit], button, select {
+    padding: .6rem 1rem;
+    font-size: inherit;
+    border-radius: 10px;
+}
+
+input[type=text], input[type=number], input[type=search], select {
+    border: 2px solid lightgrey;
+}
+
+.radio-group {
+    display: flex;
+}
+
+.radio-group label {
+    line-height: 1.5rem;
+    color: black;
+}
+
+input[type=radio] {
+    width: 20px;
+    height: 20px;
+    margin-bottom: 0.5rem;
+    margin-right: 0.5rem;
+}
+
+input[type=text], form>div>label {
     display: block;
 }
 
-input[type=number]{
-    width: 50px;
+input[type=number] {
+    max-width: 100px;
 }
 
-form>div{
+input[type=submit], button {
+    font-weight: bold;
+    border: none;
+    color: white;
+}
+
+input[type=submit] {
+    background-color: lightpink;
+}
+
+form>div {
     padding-bottom: 10px;
 }
 
-input[type=number]{
-    width: 50px;
-}
-
-.inline{
+.inline {
     display: inline;
 }

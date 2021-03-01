@@ -1,27 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" type="text/css" href="/css/style.css">
-</head>
-
-<body>
-    <header>
-        <h1><%= data.title%></h1>
-    </header>
+<%- include('partials/header.ejs') %>
     <main>
-        <form action="">
+        <form action="/" method="POST">
             <div>
                 <p>Interested in</p>
-                <% for(i = 0; i < data.interests.length; i++){ %>
-                <div>
-                    <input type="radio" id="<%= data.interests[i].toLowerCase(); %>" name="interest" value="<%= data.interests[i].toLowerCase(); %>">
-                    <label for="<%= data.interests[i].toLowerCase(); %>"><%= data.interests[i] %></label>
-                </div>
-                <% } %>
+                <% for(i=0; i < data.interests.length; i++){ %>
+                    <div class="radio-group">
+                        <input type="radio" id="<%= data.interests[i].toLowerCase(); %>" name="interest"
+                            value="<%= data.interests[i].toLowerCase(); %>">
+                        <label for="<%= data.interests[i].toLowerCase(); %>">
+                            <%= data.interests[i] %>
+                        </label>
+                    </div>
+                    <% } %>
             </div>
             <div>
                 <label for="min-age">Age</label>
@@ -32,10 +22,12 @@
             <div>
                 <label for="religion-select">Religion</label>
                 <select name="religion" id="religion-select">
-                    <option value="">Select a religion</option>
-                    <% for(i = 0; i < data.religions.length; i++){ %>
-                    <option value="<%= data.religions[i].toLowerCase(); %>"><%= data.religions[i] %></option>
-                    <% } %>
+                    <option>Select a religion</option>
+                    <% for(i=0; i < data.religions.length; i++){ %>
+                        <option value="<%= data.religions[i].toLowerCase(); %>">
+                            <%= data.religions[i] %>
+                        </option>
+                        <% } %>
                 </select>
             </div>
             <div>
@@ -44,17 +36,15 @@
             </div>
             <div>
                 <label for="place">Place</label>
-                <input type="search" name="place" id="place">
+                <input type="search" id="place" name="place">
             </div>
             <div>
                 <label for="hobbies">Hobbies</label>
-                <input type="search" name="place" id="place">
+                <input type="search" id="hobbies" name="hobbies">
                 <button id="add-hobby">+</button>
             </div>
             <input type="submit" value="Search">
         </form>
     </main>
-    <script src="../js/script.js"></script>
-</body>
-
-</html>
+    <%- include('partials/footer.ejs') %>
+    
