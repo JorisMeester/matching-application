@@ -1,7 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const slug = require('slug');
-const mongoose = require('mongoose');
+//const mongoose = require('mongoose');
 //const path = require('path');
 const app = express();
 
@@ -15,13 +15,14 @@ app.get('/', (req, res) => {
   res.render('filter', { data: { title: 'Filters', interests: ['Men', 'Women', 'Everyone'], religions: ['Atheist', 'Buddhist', 'Christian', 'Hinduist', 'Islamic', 'Jewish'] } });
 });
 
-mongoose.connect(
-  process.env.dbConnectionString,
-  { useUnifiedTopology: true, useNewUrlParser: true },
-  (req, res) => {
-    console.log("JOEPIE");
-  }
-);
+// mongoose.connect(
+//   process.env.DB_CONNECTION_STRING,
+//   { useUnifiedTopology: true, useNewUrlParser: true },
+//   (err, client) => {
+//     if (err) { console.log("error", err) }
+//     console.log(client)
+//   }
+// );
 
 app.post('/', add)
 
@@ -40,6 +41,19 @@ function add(req, res) {
 
   res.redirect('/search?q=' + searchQuery)
 }
+
+const db = require("./db");
+const dbName = "matchingApplication";
+const collectionName = "users";
+
+db.initialize(dbName, collectionName, function (dbCollection) {
+  dbCollection.find().toArray(function (err, result) {
+    if (err) throw err;
+    console.log(result);
+  });
+}, function (err) {
+  throw (err);
+});
 
 //always at the bottom
 app.use((req, res, next) => {
