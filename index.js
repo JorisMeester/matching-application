@@ -1,8 +1,8 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const slug = require('slug');
-//const mongoose = require('mongoose');
-//const path = require('path');
+const mongoose = require('mongoose');
+const path = require('path');
 const app = express();
 const routes = require('./routes.js');
 
@@ -31,14 +31,20 @@ function add(req, res) {
   res.redirect('/search?q=' + searchQuery)
 }
 
-// mongoose.connect(
-//   process.env.DB_CONNECTION_STRING,
-//   { useUnifiedTopology: true, useNewUrlParser: true },
-//   (err, client) => {
-//     if (err) { console.log("error", err) }
-//     console.log(client)
-//   }
-// );
+
+mongoose.connect(
+  `mongodb+srv://${process.env.MONGODB_USER}:${process.env.MONGODB_PASSWORD}@${process.env.MONGODB_CLUSTER}/${process.env.MONGODB_NAME}?retryWrites=true&w=majority`,
+  { useUnifiedTopology: true, useNewUrlParser: true },
+  (err, client) => {
+    if (!err) {
+      console.log('MongoDB connection succesful')
+    } else {
+      console.log('MongoDB connection error:', err)
+    }
+    console.log(client)
+  }
+)
+
 
 //always at the bottom
 app.use("/", routes);
