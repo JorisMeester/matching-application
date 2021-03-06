@@ -1,7 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const slug = require('slug');
-//const mongoose = require('mongoose');
+const mongoose = require('mongoose');
 //const path = require('path');
 const app = express();
 
@@ -11,8 +11,12 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(__dirname + '/static/public'));
 app.set('view engine', 'ejs')
 // app.set('views', path.join(__dirname), 'views')
-app.get('/', (req, res) => {
+app.get('/filter', (req, res) => {
   res.render('filter', { data: { title: 'Filters', interests: ['Men', 'Women', 'Everyone'], religions: ['Atheist', 'Buddhist', 'Christian', 'Hinduist', 'Islamic', 'Jewish'] } });
+});
+
+app.get('/create', (req, res) => {
+  res.render('create', { data: { title: 'Create profile', interests: ['Men', 'Women', 'Everyone'], religions: ['Atheist', 'Buddhist', 'Christian', 'Hinduist', 'Islamic', 'Jewish'], sexes: ['Male', 'Female'], genders: ['Agender', 'Bigender', 'Cisgender', 'Transgender']} });
 });
 
 // mongoose.connect(
@@ -41,19 +45,6 @@ function add(req, res) {
 
   res.redirect('/search?q=' + searchQuery)
 }
-
-const db = require("./db");
-const dbName = "matchingApplication";
-const collectionName = "users";
-
-db.initialize(dbName, collectionName, function (dbCollection) {
-  dbCollection.find().toArray(function (err, result) {
-    if (err) throw err;
-    console.log(result);
-  });
-}, function (err) {
-  throw (err);
-});
 
 //always at the bottom
 app.use((req, res, next) => {
