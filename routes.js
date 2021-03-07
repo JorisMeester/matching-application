@@ -34,7 +34,17 @@ routes.get(['/', '/login'], (req, res) => {
     })
 });
 
-routes.get('/filter', (req, res) => {
+routes.get(['/settings/:id'], (req, res) => {
+    Profile.findById(req.params.id, (err, doc) => {
+        if (!err) {
+            res.render('settings', { data: { title: 'Profile settings' }, profile: doc });
+        } else {
+            console.log('Error in retrieving profile data: ' + err)
+        }
+    })
+});
+
+routes.get('/filter/:id', (req, res) => {
     res.render('filter', {
         data: {
             title: 'Filters', interests: ['Men', 'Women', 'Everyone'], religions: ['Atheist', 'Buddhist', 'Christian', 'Hinduist', 'Islamic', 'Jewish']

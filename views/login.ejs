@@ -1,19 +1,27 @@
 <%- include('partials/top.ejs') %>
-    <p>Select an account</p>
-    <% for(i=0; i < list.length; i++){ %>
-        <a href="/home/<%= list[i]._id; %>">
-            <div>
-                <img src="" alt="">
-            </div>
-            <div>
-                <p>
-                    <%= list[i].firstname; %>
-                </p>
-                <p>
-                    <%= list[i].email; %>
-                </p>
-            </div>
-        </a>
-        <% } %>
-            <a href="create">Sign up</a>
-            <%- include('partials/bottom.ejs') %>
+    <main>
+        <p>Select an account</p>
+        <% for(i=0; i < list.length; i++){ %>
+            <section class="account-item">
+                <a href="/home/<%= list[i]._id; %>">
+                    <div>
+                        <% if (list[i].picture){ %>
+                            <img src="<%= list[i].picture %>" alt="profile picture of <%= list[i].firstname; %>">
+                            <% } else { %>
+                                <span class="material-icons">face</span>
+                            <% } %>
+                    </div>
+                    <div>
+                        <p>
+                            <%= list[i].firstname; %>
+                        </p>
+                        <p>
+                            <%= list[i].email; %>
+                        </p>
+                    </div>
+                </a>
+            </section>
+            <% } %>
+                <a href="create" class="button">Sign up</a>
+    </main>
+    <%- include('partials/bottom.ejs') %>

@@ -9,12 +9,14 @@ body {
     font-size: 1.2em;
 }
 
-header>*, main>* {
+header>*, main>*, section {
     margin-left: 20px;
     margin-right: 20px;
 }
 
 header {
+    padding-top: 20px;
+    margin-bottom: 20px;
     text-align: center;
     align-items: center;
     box-shadow: 0 5px 5px gray;
@@ -27,16 +29,18 @@ header h1 {
 }
 
 label, form p {
+    margin-top: 0;
+    margin-bottom: 5px;
     color: steelblue;
 }
 
-input[type=text], input[type=number], input[type=search], input[type=submit], input[type=email], button, a, select {
+input[type=text], input[type=number], input[type=search], input[type=submit], input[type=email], input[type=date], button, .button, select {
     padding: .6rem 1rem;
     font-size: inherit;
     border-radius: 10px;
 }
 
-input[type=text], input[type=number], input[type=search], input[type=email], select {
+input[type=text], input[type=number], input[type=search], input[type=email], input[type=date], select {
     border: 2px solid lightgrey;
 }
 
@@ -64,27 +68,54 @@ input[type=number] {
     max-width: 100px;
 }
 
-input[type=submit], button, a {
+input[type=submit], button, .button {
     font-weight: bold;
     border: none;
     color: white;
 }
 
-input[type=submit] {
+input[type=submit], .button {
     background-color: lightblue;
-}
-
-a {
-    background-color: lightseagreen;
-    color: black;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    text-decoration: none;
+    display: inline-block;
 }
 
 a.delete {
     background-color: lightpink;
 }
 
+section.account-item {
+    background-color: lightskyblue;
+    margin-bottom: 10px;
+}
+
+section.account-item>a {
+    display: flex;
+    text-decoration: none;
+    padding: 10px;
+    color: black;
+}
+
+section.account-item span {
+    font-size: 50px;
+}
+
+section.account-item div:first-of-type {
+    margin-right: 10px;
+}
+
+section.account-item p {
+    margin: 0;
+}
+
+section.account-item p:first-of-type {
+    font-size: 1.5rem;
+}
+
 form>div {
-    padding-bottom: 10px;
+    padding-bottom: 25px;
 }
 
 .inline {
