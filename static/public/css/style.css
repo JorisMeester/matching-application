@@ -9,7 +9,7 @@ body {
     font-size: 1.2em;
 }
 
-header > *, main > * {
+header>*, main>* {
     margin-left: 20px;
     margin-right: 20px;
 }
@@ -30,13 +30,13 @@ label, form p {
     color: steelblue;
 }
 
-input[type=text], input[type=number], input[type=search], input[type=submit], button, select {
+input[type=text], input[type=number], input[type=search], input[type=submit], input[type=email], button, a, select {
     padding: .6rem 1rem;
     font-size: inherit;
     border-radius: 10px;
 }
 
-input[type=text], input[type=number], input[type=search], select {
+input[type=text], input[type=number], input[type=search], input[type=email], select {
     border: 2px solid lightgrey;
 }
 
@@ -64,13 +64,22 @@ input[type=number] {
     max-width: 100px;
 }
 
-input[type=submit], button {
+input[type=submit], button, a {
     font-weight: bold;
     border: none;
     color: white;
 }
 
 input[type=submit] {
+    background-color: lightblue;
+}
+
+a {
+    background-color: lightseagreen;
+    color: black;
+}
+
+a.delete {
     background-color: lightpink;
 }
 

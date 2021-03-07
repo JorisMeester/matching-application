@@ -1,73 +1,80 @@
-<%- include('partials/header.ejs') %>
+<%- include('partials/top.ejs') %>
     <main>
-        <p>Create your profile by filling this form.</p>
+        <p>Edit your profile.</p>
         <form action="/edit" method="POST">
-            <input type="hidden" name="_id" value="<%= profile._id %>">
+            <input type="hidden" id="_id" name="_id" value="<%= profile._id %>">
             <div>
                 <label for="firstname">First name</label>
-                <input type="text" id="firstname" name="firstname">
+                <input type="text" id="firstname" name="firstname" value="<%= profile.firstname %>">
+            </div>
+            <div>
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" value="<%= profile.email %>">
             </div>
             <div>
                 <p>Sex</p>
                 <% for(i=0; i < data.sexes.length; i++){ %>
                     <div class="radio-group">
-                        <input type="radio" id="<%= data.sexes[i].toLowerCase(); %>" name="sex"
-                            value="<%= data.sexes[i].toLowerCase(); %>">
-                        <label for="<%= data.sexes[i].toLowerCase(); %>">
+                        <input type="radio" id="<%= data.sexes[i] %>" name="sex"
+                            value="<%= data.sexes[i] %>" <% if (profile.sex==data.sexes[i]){ %> checked <% } %>>
+                        <label for="<%= data.sexes[i] %>">
                             <%= data.sexes[i] %>
                         </label>
                     </div>
                     <% } %>
             </div>
-            <!-- <div>
-                <p>Gender</p>
-                <%// for(i=0; i < data.genders.length; i++){ %>
-                    <div class="radio-group">
-                        <input type="radio" id="<%//= data.genders[i].toLowerCase(); %>" name="gender"
-                            value="<%//= data.genders[i].toLowerCase(); %>">
-                        <label for="<%//= data.genders[i].toLowerCase(); %>">
-                            <%//= data.genders[i] %>
-                        </label>
-                    </div>
-                    <%// } %>
-            </div>
             <div>
-                <p>Interested in</p>
-                <%// for(i=0; i < data.interests.length; i++){ %>
+                <p>Gender</p>
+                <% for(i=0; i < data.genders.length; i++){ %>
                     <div class="radio-group">
-                        <input type="radio" id="<%//= data.interests[i].toLowerCase(); %>" name="interest"
-                            value="<%//= data.interests[i].toLowerCase(); %>">
-                        <label for="<%//= data.interests[i].toLowerCase(); %>">
-                            <%//= data.interests[i] %>
+                        <input type="radio" id="<%= data.genders[i] %>" name="gender"
+                            value="<%= data.genders[i] %>" <% if (profile.sex==data.sexes[i]){ %> checked <% } %>>
+                        <label for="<%= data.genders[i] %>">
+                            <%= data.genders[i] %>
                         </label>
                     </div>
-                    <%// } %>
+                    <% } %>
             </div>
             <div>
                 <label for="birthday">Birthday</label>
-                <input type="number" id="birthday" name="birthday" min="18" class="inline">
+                <input type="date" id="birthday" name="birthday" min="18" max="130" class="inline" value="<%= profile.birthday.toISOString().substr(0, 10);%>">
+            </div>
+            <div>
+                <p>Interested in</p>
+                <% for(i=0; i < data.interests.length; i++){ %>
+                    <div class="radio-group">
+                        <input type="radio" id="<%= data.interests[i] %>" name="interest"
+                            value="<%= data.interests[i] %>" <% if (profile.sex==data.sexes[i]){ %> checked <% } %>>
+                        <label for="<%= data.interests[i] %>">
+                            <%= data.interests[i] %>
+                        </label>
+                    </div>
+                    <% } %>
             </div>
             <div>
                 <label for="religion-select">Religion</label>
                 <select name="religion" id="religion-select">
-                    <option>Select a religion</option>
-                    <%// for(i=0; i < data.religions.length; i++){ %>
-                        <option value="<%//= data.religions[i].toLowerCase(); %>">
-                            <%//= data.religions[i] %>
+                    <option value="">Select a religion</option>
+                    <% for(i=0; i < data.religions.length; i++){ %>
+                        <option value="<%= data.religions[i] %>" <% if (profile.religion==data.religions[i]){ %> selected <% } %>>
+                            <%= data.religions[i] %>
                         </option>
-                        <%// } %>
+                        <% } %>
                 </select>
             </div>
             <div>
                 <label for="place">Where do you live</label>
-                <input type="search" id="place" name="place">
+                <input type="search" id="place" name="place" value="<%= profile.place %>">
             </div>
-            <div>
+            <div id="hobby-list">
                 <label for="hobbies">What are your hobbies</label>
-                <input type="search" id="hobbies" name="hobbies">
-                <button id="add-hobby">+</button>
-            </div> -->
+                <% for(i=0; i < profile.hobbies.length; i++){ %>
+                <input type="search" id="hobbies" name="hobbies" value="<%= profile.hobbies[i] %>">
+                <% } %>
+                <button id="add-hobby" type="button">+</button>
+            </div>
             <input type="submit" value="Edit profile">
         </form>
+        <a href="/delete/<%= profile._id %>" class="delete">delete</a>
     </main>
-    <%- include('partials/footer.ejs') %>
+    <%- include('partials/bottom.ejs') %>
