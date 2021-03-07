@@ -59,6 +59,24 @@ routes.post('/edit', (req, res) => {
     }
 });
 
+routes.get('/delete/:id', (req, res) => {
+    Profile.findByIdAndRemove(req.params.id, (err, doc) => {
+        if (!err) {
+            res.redirect('/');
+        } else {
+            console.log('Error when deleting profile item: ' + err)
+        }
+    });
+});
+
+routes.post('/edit', (req, res) => {
+    if (req.body._id) {
+        updateData(req, res);
+    } else {
+        console.log('Error: No or invalid profile id given')
+    }
+});
+
 function insertData(req, res) {
     const profile = new Profile();
     profile.firstname = req.body.firstname;
