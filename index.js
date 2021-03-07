@@ -20,15 +20,6 @@ app.post('/', add);
 function add(req, res) {
   console.log(req.body);
   let searchQuery = slug(toString(req.body)).toLowerCase();
-  // data.push({
-  //   interest: req.body.interest,
-  //   minAge: req.body.minAge,
-  //   maxAge: req.body.maxAge,
-  //   religion: req.body.religion,
-  //   livingDistance: req.body.livingDistance,
-  //   place: req.body.place,
-  //   hobbies: req.body.hobbies
-  // })
 
   res.redirect('/search?q=' + searchQuery)
 }

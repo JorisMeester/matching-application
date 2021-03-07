@@ -1,14 +1,13 @@
 const  mongoose = require('mongoose');
 
 const profileSchema = new mongoose.Schema({
-    firstName: {
-        type: String
+    firstname: {
+        type: String,
+        required: 'This field is required.'
     },
     sex: {
-        type: String
-    },
-    test: {
-        type: String
+        type: String,
+        required: 'This field is required.'
     }
 });
 
