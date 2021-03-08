@@ -3,13 +3,17 @@ const routes = require('express').Router();
 //const { response } = require('express');
 //const { update } = require('lodash');
 const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
+const { check, validationResult } = require('express-validator');
 
 // Assigns Profile model object to Profile
 const Profile = mongoose.model('Profile');
 
+const urlencodedParser = bodyParser.urlencoded({ extended: false });
+
 // Route for Home page
 routes.get('/home/:id', (req, res) => {
-    Profile.find(async(error, docs) => {
+    Profile.find(async (error, docs) => {
         if (!error) {
             const doc = await getProfile(req, res);
             res.render('home', {
@@ -46,23 +50,43 @@ routes.get(['/profile-settings/:id'], async (req, res) => {
 // Route for Filter page
 routes.get('/filter/:id', async (req, res) => {
     const doc = await getProfile(req, res);
-            res.render('filter', {
-                data: { title: 'Filters', interests: ['Men', 'Women', 'Everyone'], religions: ['Atheist', 'Buddhist', 'Christian', 'Hinduist', 'Islamic', 'Jewish'] },
-                profile: doc
-            });
+    res.render('filter', {
+        data: { title: 'Filters', interests: ['Men', 'Women', 'Everyone'], religions: ['Atheist', 'Buddhist', 'Christian', 'Hinduist', 'Islamic', 'Jewish'] },
+        profile: doc
+    });
 });
 
 // Route for Create page
 routes.get('/create', (req, res) => {
     res.render('create', {
-        data: { title: 'Create profile', interests: ['Men', 'Women', 'Everyone'], religions: ['Atheist', 'Buddhist', 'Christian', 'Hinduist', 'Islamic', 'Jewish'], sexes: ['Male', 'Female'], genders: ['Agender', 'Bigender', 'Cisgender', 'Transgender']
+        data: {
+            title: 'Create profile', interests: ['Men', 'Women', 'Everyone'], religions: ['Atheist', 'Buddhist', 'Christian', 'Hinduist', 'Islamic', 'Jewish'], sexes: ['Male', 'Female'], genders: ['Agender', 'Bigender', 'Cisgender', 'Transgender']
         }
     });
 });
 
 // Handles POST request for Create page with insertData function
-routes.post('/create', (req, res) => {
+routes.post('/create', urlencodedParser, [
+    check('firstname', 'The first name must be atleast 1 character long')
+    .exists()
+        .isLength({ min: 1 }),
+    check('firstname', 'The first name must be less than 100 characters long')
+    .isLength({max: 100}),
+    check('email', 'Email is not valid')
+        .isEmail()
+        .normalizeEmail()
+], (req, res) => {
+    const errors = validationResult(req);
+    if(!errors.isEmpty()){
+        const alert = errors.array();
+        res.render('create', {
+            data: {
+                title: 'Create profile', interests: ['Men', 'Women', 'Everyone'], religions: ['Atheist', 'Buddhist', 'Christian', 'Hinduist', 'Islamic', 'Jewish'], sexes: ['Male', 'Female'], genders: ['Agender', 'Bigender', 'Cisgender', 'Transgender']
+            }, alert
+        });
+    } else {
     insertData(req, res);
+    }
 });
 
 // Route for Edit page
@@ -104,47 +128,15 @@ routes.post('/search/:id', (req, res) => {
     Profile.create(filters, async (error, docs) => {
         if (!error) {
             const doc = await getProfile(req, res);
-                    res.render('home', {
-                        data: { title: 'Matching application' },
-                        list: docs,
-                        profile: doc
-                    });
+            res.render('home', {
+                data: { title: 'Matching application' },
+                list: docs,
+                profile: doc
+            });
         } else {
             console.log('Error: Filter failed' + error)
         }
     })
-    //     Profile.find((error, docs) => {
-    //         if (req.query.religion != 'undefined') {
-    //         const list = docs;
-    //         response = list.filter((item) => {
-    //             if (item.religion === 'Christian') {
-    //                 Profile.findById(req.params.id, (error, doc) => {
-    //                     if (!error) {
-    //                         res.render('search', {
-    //                             data: { title: 'Results' },
-    //                             list: item,
-    //                             profile: doc
-    //                         });
-    //                     } else {
-    //                         console.log('Error in retrieving profile item: ' + error)
-    //                     }
-    //                 });
-    //             }
-    //         });
-    //         } else {
-    //         Profile.findById(req.params.id, (error, doc) => {
-    //             if (!error) {
-    //                 res.render('search', {
-    //                     data: { title: 'Results' },
-    //                     list: docs,
-    //                     profile: doc
-    //                 });
-    //             } else {
-    //                 console.log('Error in retrieving profile item: ' + error)
-    //             }
-    //         });
-    //     }
-    // });
 });
 
 // Inserts HTTP POST data into Profile object and saves it in the database
@@ -164,6 +156,15 @@ function insertData(req, res) {
         if (!error) {
             res.redirect('/login');
         } else {
+            if (error.name == 'ValidationError') {
+                handleValidationError(error, req.body);
+                res.render('create', {
+                    data: {
+                        title: 'Create profile', interests: ['Men', 'Women', 'Everyone'], religions: ['Atheist', 'Buddhist', 'Christian', 'Hinduist', 'Islamic', 'Jewish'], sexes: ['Male', 'Female'], genders: ['Agender', 'Bigender', 'Cisgender', 'Transgender']
+                    },
+                    filledProfile: req.body
+                });
+            }
             console.log('Error during profile data insertion: ' + error)
         }
     });
@@ -179,6 +180,21 @@ function updateData(req, res) {
             console.log('Error during profile data update: ' + error)
         }
     });
+}
+
+function handleValidationError(error, body) {
+    for (field in error.errors) {
+        switch (error.errors[field].path) {
+            case 'firstname':
+                body['firstnameError'] = error.errors[field].message;
+                break;
+            case 'email':
+                body['emailError'] = error.errors[field].message;
+                break;
+            default:
+                break;
+        }
+    }
 }
 
 // Gets the data of the current profile

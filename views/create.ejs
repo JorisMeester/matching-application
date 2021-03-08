@@ -2,73 +2,76 @@
     <%- include('partials/top.ejs') %>
         <main>
             <p>Create your profile by filling this form.</p>
-            <form action="/create" method="POST">
-                <div>
-                    <label for="firstname">First name</label>
-                    <input type="text" id="firstname" name="firstname">
-                </div>
-                <div>
-                    <label for="email">Email</label>
-                    <input type="email" id="email" name="email">
-                </div>
-                <div>
-                    <p>Sex</p>
-                    <% for(i=0; i < data.sexes.length; i++){ %>
-                        <div class="radio-group">
-                            <input type="radio" id="<%= data.sexes[i] %>" name="sex" value="<%= data.sexes[i] %>">
-                            <label for="<%= data.sexes[i] %>">
-                                <%= data.sexes[i] %>
-                            </label>
+            <% if(typeof alert !='undefined' ){alert.forEach(error=> {%>
+                <p class="red-text"><%= error.msg %></p>
+                <% }); }%>
+                    <form action="/create" method="POST">
+                        <div>
+                            <label for="firstname">First name</label>
+                            <input type="text" id="firstname" name="firstname">
                         </div>
-                        <% } %>
-                </div>
-                <div>
-                    <p>Gender</p>
-                    <% for(i=0; i < data.genders.length; i++){ %>
-                        <div class="radio-group">
-                            <input type="radio" id="<%= data.genders[i] %>" name="gender" value="<%= data.genders[i] %>">
-                            <label for="<%= data.genders[i] %>">
-                                <%= data.genders[i] %>
-                            </label>
+                        <div>
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email">
                         </div>
-                        <% } %>
-                </div>
-                <div>
-                    <label for="birthday">Birthday</label>
-                    <input type="date" id="birthday" name="birthday" min="18" max="130" class="inline">
-                </div>
-                <div>
-                    <p>Interested in</p>
-                    <% for(i=0; i < data.interests.length; i++){ %>
-                        <div class="radio-group">
-                            <input type="radio" id="<%= data.interests[i] %>" name="interest" value="<%= data.interests[i] %>">
-                            <label for="<%= data.interests[i] %>">
-                                <%= data.interests[i] %>
-                            </label>
+                        <div>
+                            <p>Sex</p>
+                            <% for(i=0; i < data.sexes.length; i++){ %>
+                                <div class="radio-group">
+                                    <input type="radio" id="<%= data.sexes[i] %>" name="sex" value="<%= data.sexes[i] %>">
+                                    <label for="<%= data.sexes[i] %>">
+                                        <%= data.sexes[i] %>
+                                    </label>
+                                </div>
+                                <% } %>
                         </div>
-                        <% } %>
-                </div>
-                <div>
-                    <label for="religion-select">Religion</label>
-                    <select name="religion" id="religion-select">
-                        <option>Select a religion</option>
-                        <% for(i=0; i < data.religions.length; i++){ %>
-                            <option value="<%= data.religions[i] %>">
-                                <%= data.religions[i] %>
-                            </option>
-                            <% } %>
-                    </select>
-                </div>
-                <div>
-                    <label for="place">Where do you live</label>
-                    <input type="search" id="place" name="place">
-                </div>
-                <div id="hobby-list">
-                    <label for="hobbies">What are your hobbies</label>
-                    <input type="search" id="hobbies" name="hobbies">
-                    <button id="add-hobby" type="button">+</button>
-                </div>
-                <input type="submit" value="Create profile">
-            </form>
+                        <div>
+                            <p>Gender</p>
+                            <% for(i=0; i < data.genders.length; i++){ %>
+                                <div class="radio-group">
+                                    <input type="radio" id="<%= data.genders[i] %>" name="gender" value="<%= data.genders[i] %>">
+                                    <label for="<%= data.genders[i] %>">
+                                        <%= data.genders[i] %>
+                                    </label>
+                                </div>
+                                <% } %>
+                        </div>
+                        <div>
+                            <label for="birthday">Birthday</label>
+                            <input type="date" id="birthday" name="birthday" min="18" max="130" class="inline">
+                        </div>
+                        <div>
+                            <p>Interested in</p>
+                            <% for(i=0; i < data.interests.length; i++){ %>
+                                <div class="radio-group">
+                                    <input type="radio" id="<%= data.interests[i] %>" name="interest" value="<%= data.interests[i] %>">
+                                    <label for="<%= data.interests[i] %>">
+                                        <%= data.interests[i] %>
+                                    </label>
+                                </div>
+                                <% } %>
+                        </div>
+                        <div>
+                            <label for="religion-select">Religion</label>
+                            <select name="religion" id="religion-select">
+                                <option>Select a religion</option>
+                                <% for(i=0; i < data.religions.length; i++){ %>
+                                    <option value="<%= data.religions[i] %>">
+                                        <%= data.religions[i] %>
+                                    </option>
+                                    <% } %>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="place">Where do you live</label>
+                            <input type="search" id="place" name="place">
+                        </div>
+                        <div id="hobby-list">
+                            <label for="hobbies">What are your hobbies</label>
+                            <input type="search" id="hobbies" name="hobbies">
+                            <button id="add-hobby" type="button">+</button>
+                        </div>
+                        <input type="submit" value="Create profile">
+                    </form>
         </main>
         <%- include('partials/bottom.ejs') %>

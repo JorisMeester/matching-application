@@ -1,5 +1,5 @@
 // Modules required
-const  mongoose = require('mongoose');
+const mongoose = require('mongoose');
 
 // Profile model
 const profileSchema = new mongoose.Schema({
@@ -38,5 +38,11 @@ const profileSchema = new mongoose.Schema({
         type: Array
     },
 });
+
+// Email validation
+profileSchema.path('email').validate((val) => {
+    emailRegex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return emailRegex.test(val);
+}, 'Invalid e-mail.')
 
 mongoose.model('Profile', profileSchema);

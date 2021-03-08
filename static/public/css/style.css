@@ -121,3 +121,7 @@ form>div {
 .inline {
     display: inline;
 }
+
+.red-text{
+    color: red;
+}
