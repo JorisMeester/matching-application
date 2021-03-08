@@ -25,7 +25,7 @@ MONGODB_USER=yourUsername
 MONGODB_PASSWORD=yourPassword
 ```
 
-And to run the server run the following command in the terminal:
+And to run the server enter the following command in the terminal:
 
 `npm start`
 
