@@ -14,6 +14,7 @@
     "url": "https://github.com/JorisMeester/matching-application/issues"
   },
   "scripts": {
+    "start": "node index.js",
     "test": "bonjourno"
   },
   "keywords": [
