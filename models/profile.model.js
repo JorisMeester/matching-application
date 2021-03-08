@@ -1,5 +1,7 @@
+// Modules required
 const  mongoose = require('mongoose');
 
+// Profile model
 const profileSchema = new mongoose.Schema({
     firstname: {
         type: String,
@@ -10,6 +12,10 @@ const profileSchema = new mongoose.Schema({
         required: 'This field is required.'
     },
     sex: {
+        type: String,
+        required: 'This field is required.'
+    },
+    gender: {
         type: String,
         required: 'This field is required.'
     },

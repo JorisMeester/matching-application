@@ -1,6 +1,7 @@
+<% //Filter view, form for filtering profiles%>
 <%- include('partials/top.ejs') %>
     <main>
-        <form action="/" method="POST">
+        <form action="/search/<%= profile._id; %>" method="POST">
             <div>
                 <p>Interested in</p>
                 <% for(i=0; i < data.interests.length; i++){ %>
