@@ -16,13 +16,14 @@ Then install the packages needed with npm by entering the following in the termi
 
 `npm install`
 
-
 ## Getting it to work
 Create an .env file in the root of the project and fill it with your own MongoDB Atlas credentials (you need a MongoDB cluster and database):
-```MONGODB_CLUSTER=yourClusterName
+```
+MONGODB_CLUSTER=yourClusterName
 MONGODB_NAME=yourDatabaseName
 MONGODB_USER=yourUsername
-MONGODB_PASSWORD=yourPassword```
+MONGODB_PASSWORD=yourPassword
+```
 
 And to run the server run the following command in the terminal:
 
