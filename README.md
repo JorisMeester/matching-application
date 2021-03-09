@@ -37,3 +37,6 @@ And to run the server enter the following command in the terminal:
 * Node.js https://nodejs.dev/
 * Express https://expressjs.com/
 * EJS https://ejs.co/
+
+## MongoDB Data structure
+![wireframe of filter feature](https://github.com/JorisMeester/matching-application/blob/main/images/MongoDB_Data_Structure.png)
