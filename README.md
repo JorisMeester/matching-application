@@ -5,7 +5,10 @@ I'm making a feature for a Matching application to create, retrieve, update and 
 
 ## Table of contents
 * Install
+* Getting it to work
 * Languages and frameworks being used
+* MongoDB Data structure
+* Resources
 
 ## Install
 To install the Matching Application start by cloning this repository with Git (you need to have Git installed on your machine). Navigate to the directory where you want to install and enter the following in the terminal:
@@ -39,7 +42,8 @@ And to run the server enter the following command in the terminal:
 * EJS https://ejs.co/
 
 ## MongoDB Data structure
-![wireframe of filter feature](https://github.com/JorisMeester/matching-application/blob/main/images/MongoDB_Data_Structure.png)
+This is the MongoDB structure that my database uses:
+![MongoDB Data structure](https://github.com/JorisMeester/matching-application/blob/main/images/MongoDB_Data_Structure.png)
 
 ## Resources
 These are the resources used for creating this application:
