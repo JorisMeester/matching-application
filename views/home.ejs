@@ -4,7 +4,8 @@
         <h2>Hello, <%= profile.firstname; %></h2>
         <a href="/profile-settings/<%= profile._id; %>" class="button">View your profile</a>
         <h3>Profiles</h3>
-        <a href="/filter/<%= profile._id; %>" class="button"><span class="material-icons">filter_alt</span></a>
+
+        <%/* This link leads to an incomplete feature <a href="/filter/[insert profile.id here]" class="button"><span class="material-icons">filter_alt</span></a> */%>
         <% for(i=0; i < list.length; i++){ %>
             <% if (profile._id !== list[i]._id){ %>
             <section class="account-item">

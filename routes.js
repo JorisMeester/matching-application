@@ -47,15 +47,6 @@ routes.get(['/profile-settings/:id'], async (req, res) => {
     });
 });
 
-// Route for Filter page
-routes.get('/filter/:id', async (req, res) => {
-    const doc = await getProfile(req, res);
-    res.render('filter', {
-        data: { title: 'Filters', interests: ['Men', 'Women', 'Everyone'], religions: ['Atheist', 'Buddhist', 'Christian', 'Hinduist', 'Islamic', 'Jewish'] },
-        profile: doc
-    });
-});
-
 // Route for Create page
 routes.get('/create', (req, res) => {
     res.render('create', {
@@ -119,24 +110,6 @@ routes.get('/delete/:id', (req, res) => {
             console.log('Error when deleting profile item: ' + error)
         }
     });
-});
-
-
-routes.post('/search/:id', (req, res) => {
-    console.log('test')
-    const filters = req.body;
-    Profile.create(filters, async (error, docs) => {
-        if (!error) {
-            const doc = await getProfile(req, res);
-            res.render('home', {
-                data: { title: 'Matching application' },
-                list: docs,
-                profile: doc
-            });
-        } else {
-            console.log('Error: Filter failed' + error)
-        }
-    })
 });
 
 // Inserts HTTP POST data into Profile object and saves it in the database
@@ -204,3 +177,30 @@ async function getProfile(req, res) {
 
 // Exports the routes object
 module.exports = routes;
+
+// Route for Filter page (unused)
+// routes.get('/filter/:id', async (req, res) => {
+//     const doc = await getProfile(req, res);
+//     res.render('filter', {
+//         data: { title: 'Filters', interests: ['Men', 'Women', 'Everyone'], religions: ['Atheist', 'Buddhist', 'Christian', 'Hinduist', 'Islamic', 'Jewish'] },
+//         profile: doc
+//     });
+// });
+
+// Route for Search results page (unused)
+// routes.post('/search/:id', (req, res) => {
+//     console.log('test')
+//     const filters = req.body;
+//     Profile.create(filters, async (error, docs) => {
+//         if (!error) {
+//             const doc = await getProfile(req, res);
+//             res.render('home', {
+//                 data: { title: 'Matching application' },
+//                 list: docs,
+//                 profile: doc
+//             });
+//         } else {
+//             console.log('Error: Filter failed' + error)
+//         }
+//     })
+// });
