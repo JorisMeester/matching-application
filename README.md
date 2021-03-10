@@ -4,11 +4,17 @@
 I'm making a feature for a Matching application to create, retrieve, update and delete dating profiles from the database. I'm using Node.js, NPM, Express, MongoDB and EJS to create dynamic pages.
 
 ## Table of contents
+* Try application on Heroku
 * Install
 * Getting it to work
 * Languages and frameworks being used
 * MongoDB Data structure
 * Resources
+
+## Try application on Heroku
+Here is a link where the application is deployed online if you want to check it out quick:
+https://joris-matching-application.herokuapp.com/
+
 
 ## Install
 To install the Matching Application start by cloning this repository with Git (you need to have Git installed on your machine). Navigate to the directory where you want to install and enter the following in the terminal:
@@ -31,6 +37,8 @@ MONGODB_PASSWORD=yourPassword
 And to run the server enter the following command in the terminal:
 
 `npm start`
+
+Now enter `localhost:3000` in the browser URL bar, the application should run.
 
 ## Languages and frameworks being used
 * HTML
