@@ -43,6 +43,7 @@ And to run the server enter the following command in the terminal:
 
 ## MongoDB Data structure
 This is the MongoDB structure that my database uses:
+
 ![MongoDB Data structure](https://github.com/JorisMeester/matching-application/blob/main/images/MongoDB_Data_Structure.png)
 
 ## Resources
